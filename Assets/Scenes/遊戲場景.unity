@@ -639,9 +639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237a3fc19b28ec647b0e48810c5cb41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 6
-  bigJumpForce: 10
-  floatBoostForce: 5
+  jumpForce: 5
+  bigJumpForce: 7
+  floatBoostForce: 4
   floatDelay: 0.3
   floatGravity: 100
   groundCheck: {fileID: 1235962759}
@@ -649,7 +649,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  basket: 0
+  basket: 1
 --- !u!114 &1984574756
 MonoBehaviour:
   m_ObjectHideFlags: 0
