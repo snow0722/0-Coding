@@ -17,8 +17,7 @@ public class PlayerJumpFloat : MonoBehaviour
     [SerializeField][Tooltip("地面偵測半徑")] private float groundCheckRadius = 0.3f;
     [SerializeField][Tooltip("地面圖層")] private LayerMask groundLayer;
 
-    [Header("是否取得籃子")]
-    public bool basket; // 是否取得漂浮能力（取得籃子）
+    public Basket basketScript;  // 取得 Basket.cs
 
     // 狀態變數
     private Rigidbody rb;
@@ -110,7 +109,7 @@ public class PlayerJumpFloat : MonoBehaviour
     // 判斷跳躍種類（是否為大跳）
     private void DecideJumpType()
     {
-        if (basket && jumpHoldTime >= floatDelay)
+        if (basketScript != null && basketScript.basket && jumpHoldTime >= floatDelay)
         {
             DoBigJumpAndFloat();
         }
@@ -123,7 +122,7 @@ public class PlayerJumpFloat : MonoBehaviour
     // 漂浮邏輯：長按並在空中且大跳後才進入低重力
     private void HandleFloatGravity()
     {
-        if (basket && isBigJump && !isGrounded && isJumpHeld)
+        if (basketScript != null && basketScript.basket && isBigJump && !isGrounded && isJumpHeld)
         {
             // 法1:使用較小的重力達成漂浮效果
             //rb.AddForce(Vector3.down * (normalGravity * floatGravity), ForceMode.Acceleration);
@@ -144,7 +143,7 @@ public class PlayerJumpFloat : MonoBehaviour
     // 空中上飄（點按跳躍鍵）
     private void TryAirFloatBoost()
     {
-        if (!basket || isGrounded || !isBigJump) return;
+        if (basketScript == null || !basketScript.basket || isGrounded || !isBigJump) return;
 
         Vector3 vel = rb.velocity;
         vel.y = floatBoostForce;
