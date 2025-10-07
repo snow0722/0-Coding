@@ -20,7 +20,12 @@ public class CollidedFall : MonoBehaviour
 
     void Start()
     {
+        // 記錄初始站立角度
         originalRotation = transform.rotation;
+        
+        // 開場倒下
+        float angleX = fallAngle; // 或 -fallAngle，視模型正面方向
+        transform.rotation = Quaternion.Euler(angleX, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -65,6 +70,32 @@ public class CollidedFall : MonoBehaviour
             t += Time.deltaTime / duration;
             transform.rotation = Quaternion.Slerp(from, to, t);
             yield return null;
+        }
+    }
+
+    public void StandUpFromTrigger(bool forward = true)
+    {
+        if (!isFalling)
+        {
+            StartCoroutine(FallAndRecover(forward));
+        }
+    }
+
+    // 立起
+    public void StandUp()
+    {
+        if (!isFalling)
+            StartCoroutine(RotateOverTime(transform.rotation, originalRotation, recoverDuration));
+    }
+
+    // 倒下
+    public void FallDown(bool forward = true)
+    {
+        if (!isFalling)
+        {
+            float angleX = forward ? fallAngle : -fallAngle;
+            Quaternion targetRotation = Quaternion.Euler(angleX, transform.eulerAngles.y, transform.eulerAngles.z);
+            StartCoroutine(RotateOverTime(transform.rotation, targetRotation, fallDuration));
         }
     }
 }

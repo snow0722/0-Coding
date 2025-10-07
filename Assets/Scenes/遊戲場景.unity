@@ -474,7 +474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3687878214649399640, guid: a0e2a77d6ae58994b819a1f0012b8032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3687878214649399640, guid: a0e2a77d6ae58994b819a1f0012b8032, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2375,6 +2375,7 @@ GameObject:
   - component: {fileID: 1984574756}
   - component: {fileID: 1984574755}
   - component: {fileID: 1984574761}
+  - component: {fileID: 1984574762}
   - component: {fileID: 1984574754}
   m_Layer: 6
   m_Name: "\u89D2\u8272"
@@ -2587,6 +2588,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickableLayerName: Pickable
   interactionUI: {fileID: 814785875}
+--- !u!114 &1984574762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984574752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21b38cda1e82f44c894e297d82b6d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 2.5
+  boardLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &2144643720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2699,7 +2716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2456738688957881250, guid: e66f015e9d8bc4b4c98a8fbb6ca830ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.149
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2456738688957881250, guid: e66f015e9d8bc4b4c98a8fbb6ca830ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2756,7 +2773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2025990978400339471, guid: 9819963bed3f9cf438872cce6e74a914, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.149
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2025990978400339471, guid: 9819963bed3f9cf438872cce6e74a914, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2821,7 +2838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3687878214649399640, guid: a0e2a77d6ae58994b819a1f0012b8032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.149
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3687878214649399640, guid: a0e2a77d6ae58994b819a1f0012b8032, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2878,7 +2895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2013895177711817301, guid: 6b2f95f71997907429c346c88394212c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.149
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2013895177711817301, guid: 6b2f95f71997907429c346c88394212c, type: 3}
       propertyPath: m_LocalPosition.z

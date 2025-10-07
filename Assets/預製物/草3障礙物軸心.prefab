@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8437881551066238691}
   - component: {fileID: 5246658141470490774}
   - component: {fileID: 2513429079003900871}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u969C\u7919\u7269"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 1902691694103823036}
   - component: {fileID: 6741193186893584034}
   - component: {fileID: 1446578399817209791}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u83493\u969C\u7919\u7269\u8EF8\u5FC3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
