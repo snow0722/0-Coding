@@ -56,6 +56,11 @@ public class PlayerControl : MonoBehaviour
         var direction = new Vector3(moveVector2.x, 0, moveVector2.y);
         var movement = direction * moveSpeed * Time.deltaTime;
         transform.position += movement;
+
+        // 更新動畫控制器
+        float moveInputX = direction.x; // 水平輸入
+        var animController = GetComponent<PlayerAnimationController>();
+        animController.UpdateAnimation(moveInputX);
     }
 
     // 提供 Fungus 呼叫的方法

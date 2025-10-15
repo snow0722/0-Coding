@@ -176,4 +176,9 @@ public class PlayerJumpFloat : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
+
+    // 給動畫控制器讀取狀態
+    public bool IsGrounded => isGrounded;
+    public bool IsJumpHeld => isJumpHeld;
+    public float HorizontalSpeed => Mathf.Abs(rb.velocity.x);
 }
