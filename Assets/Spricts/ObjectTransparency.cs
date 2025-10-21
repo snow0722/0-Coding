@@ -10,13 +10,13 @@ public class ObjectTransparency : MonoBehaviour
     [Range(0f, 1f)]
     public float transparentAlpha = 0.3f;
 
-    [Header("最大 Z 軸距離")]
+    [Header("最大距離 (XZ平面)")]
     [Tooltip("超過此值則完全不透明")]
     [Range(0.1f, 10f)]
     public float maxDistance = 5f;
 
     [Header("啟動距離")]
-    [Tooltip("實際距離小於此值才啟動透明")]
+    [Tooltip("距離小於此值才啟動透明")]
     [Range(0.1f, 10f)]
     public float activationDistance = 1f;
 
@@ -45,18 +45,21 @@ public class ObjectTransparency : MonoBehaviour
         if (target == null || objRenderer == null) return;
 
         float targetAlpha = originalAlpha;
-        float worldDistance = Vector3.Distance(target.position, transform.position);
 
-        //如果角色的Z大於物件的Z(在物件後方) 並 兩者距離小於啟動距離
-        if (target.position.z > transform.position.z && worldDistance < activationDistance)
+        // 取得 XZ 平面距離（忽略 Y 高度）
+        Vector3 targetPosXZ = new Vector3(target.position.x, 0f, target.position.z);
+        Vector3 objectPosXZ = new Vector3(transform.position.x, 0f, transform.position.z);
+        float flatDistance = Vector3.Distance(targetPosXZ, objectPosXZ);
+
+        // 如果角色的Z大於物件的Z(在物件後方) 並且XZ平面距離小於啟動距離
+        if (target.position.z > transform.position.z && flatDistance < activationDistance)
         {
-            //兩者Z相減的絕對值
             float zDistance = Mathf.Abs(transform.position.z - target.position.z);
-            //越靠近越透明
             float t = Mathf.InverseLerp(0f, maxDistance, zDistance);
             targetAlpha = Mathf.Lerp(transparentAlpha, originalAlpha, t);
         }
 
+        // 平滑變化透明度
         currentAlpha = Mathf.MoveTowards(currentAlpha, targetAlpha, Time.deltaTime * fadeSpeed);
 
         Color color = objRenderer.material.color;

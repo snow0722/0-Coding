@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   transparentAlpha: 0.4
-  maxDistance: 2
+  maxDistance: 1.5
   activationDistance: 1
   fadeSpeed: 5
 --- !u!1 &8674795837269881170
