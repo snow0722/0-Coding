@@ -27,12 +27,6 @@ public class Door : MonoBehaviour, IInteraction
     private string messageNoKey = "沒有鑰匙";
     private string messageHasKey = "已有鑰匙";
 
-    public void PickUp()
-    {
-        Debug.Log($"<color=#f37>撿取：{name}</color>");
-        Interaction();
-    }
-
     public void Interaction()
     {
         bool hasKey = key != null && key.pickedUp;
@@ -52,6 +46,12 @@ public class Door : MonoBehaviour, IInteraction
             else
                 ShowResultDirectly();
         }
+    }
+
+    public void PickUp()
+    {
+        print($"<color=#f37>撿取：{name}</color>");
+        Interaction();
     }
 
     // 直接開啟結算畫面
