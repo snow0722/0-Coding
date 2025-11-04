@@ -1,33 +1,56 @@
 ﻿using UnityEngine;
 
+
+[System.Serializable]
+public class ItemGroup
+{
+    [Header("GameData 名稱（例如 milk、candy、key）")]
+    public string itemName;
+
+    [Header("這個物品對應的多個場景物件")]
+    public GameObject[] itemObjects;
+}
+
 public class ItemHider : MonoBehaviour
 {
-    [Header("要檢查的物件 Tag（可在 Inspector 選擇）")]
-    [Tooltip("選擇所有可撿取物件所使用的 Tag")]
-    [SerializeField] private string targetTag; // 可以從 Inspector 選 tag
+    [Header("根據 GameData 狀態隱藏的物件群組")]
+    public ItemGroup[] items;
 
     private void Start()
     {
-        if (string.IsNullOrEmpty(targetTag))
+        ApplyHideLogic();
+    }
+
+    // 根據 GameData 隱藏已撿取的物件
+    public void ApplyHideLogic()
+    {
+        foreach (var group in items)
         {
-            Debug.LogWarning("[ItemHider] 尚未設定 Tag，請在 Inspector 選擇要偵測的 Tag。");
-            return;
-        }
+            bool alreadyPicked = HasItem(group.itemName.ToLower());
 
-        // 找出所有有指定 Tag 的物件
-        GameObject[] pickups = GameObject.FindGameObjectsWithTag(targetTag);
-
-        foreach (GameObject item in pickups)
-        {
-            string name = item.name.ToLower();
-
-            // 根據 GameData 狀態隱藏已撿取的物件
-            if (HasItem(name))
+            foreach (var obj in group.itemObjects)
             {
-                item.SetActive(false);
-                Debug.Log($"[ItemHider] 已撿取過：{item.name}，自動隱藏。");
+                if (obj == null) continue;
+                obj.SetActive(!alreadyPicked); // true = 隱藏
+            }
+
+            Debug.Log($"[ItemHider] {group.itemName} → {(alreadyPicked ? "隱藏(已撿取)" : "顯示(未撿取)")}");
+        }
+    }
+
+    // 一鍵全部顯示
+    public void ShowAllObjects()
+    {
+        foreach (var group in items)
+        {
+            foreach (var obj in group.itemObjects)
+            {
+                if (obj == null) continue;
+                obj.SetActive(true);
             }
         }
+
+        Debug.Log("[ItemHider] 已全部顯示所有物件");
     }
 
     private bool HasItem(string itemName)

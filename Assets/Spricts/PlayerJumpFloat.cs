@@ -109,7 +109,7 @@ public class PlayerJumpFloat : MonoBehaviour
     // 判斷跳躍種類（是否為大跳）
     private void DecideJumpType()
     {
-        if (basketScript != null && basketScript.basket && jumpHoldTime >= floatDelay)
+        if (GameData.Instance.basket && jumpHoldTime >= floatDelay)
         {
             DoBigJumpAndFloat();
         }

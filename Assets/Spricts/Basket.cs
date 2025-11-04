@@ -35,6 +35,7 @@ public class Basket : MonoBehaviour, IInteraction
         print($"<color=#37f>撿取：{name}</color>");
         // 設為已經撿取，剛體設定為運動學(不會動)，關閉碰撞，設定座標
         basket = true;
+        GameData.Instance.GetBasket();    // 更新全局狀態
         rig.isKinematic = true;
         col.enabled = true;
         transform.position = new Vector3(0, 0, -200);

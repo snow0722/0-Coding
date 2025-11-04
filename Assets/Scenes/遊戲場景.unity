@@ -2235,6 +2235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1834415028}
   - component: {fileID: 1834415027}
+  - component: {fileID: 1834415029}
   m_Layer: 0
   m_Name: ItemManager
   m_TagString: Untagged
@@ -2254,7 +2255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0134b64bee99047bad0afbaec29943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Pickable
+  items:
+  - itemName: basket
+    itemObjects:
+    - {fileID: 524928732}
 --- !u!4 &1834415028
 Transform:
   m_ObjectHideFlags: 0
@@ -2270,6 +2274,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1834415029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834415026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff590f0469f6c834c829a9cb4272d80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conch: 0
+  candy: 0
+  basket: 0
+  crystal: 0
+  key: 0
+  apple: 0
+  milk: 0
+  bread: 0
 --- !u!1 &1891834758
 GameObject:
   m_ObjectHideFlags: 0
