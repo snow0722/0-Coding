@@ -10,6 +10,9 @@ public class PlayerControl : MonoBehaviour
     [Tooltip("移動速度")]
     private float moveSpeed = 5f;
 
+    [SerializeField, Tooltip("走路音效來源")]
+    private AudioSource footstepAudio;
+
     private InputAction moveAction;
 
     // 跳躍動作
@@ -32,6 +35,9 @@ public class PlayerControl : MonoBehaviour
 
         // 取得 PlayerJumpFloat 組件
         jumpFloat = GetComponent<PlayerJumpFloat>();
+
+        if (footstepAudio == null)
+            footstepAudio = GetComponent<AudioSource>(); // 沒設定就抓自己身上的
     }
 
     // 跳躍按下
@@ -56,6 +62,18 @@ public class PlayerControl : MonoBehaviour
         var direction = new Vector3(moveVector2.x, 0, moveVector2.y);
         var movement = direction * moveSpeed * Time.deltaTime;
         transform.position += movement;
+
+        // 播放或停止走路音效
+        if (direction.magnitude > 0.1f)
+        {
+            if (footstepAudio != null && !footstepAudio.isPlaying)
+                footstepAudio.Play();
+        }
+        else
+        {
+            if (footstepAudio != null && footstepAudio.isPlaying)
+                footstepAudio.Stop();
+        }
 
         // 更新動畫控制器
         float moveInputX = direction.x; // 水平輸入
