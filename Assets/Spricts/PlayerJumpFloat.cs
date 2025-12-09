@@ -17,11 +17,16 @@ public class PlayerJumpFloat : MonoBehaviour
     [SerializeField][Tooltip("地面偵測半徑")] private float groundCheckRadius = 0.3f;
     [SerializeField][Tooltip("地面圖層")] private LayerMask groundLayer;
 
+    [Header("跳躍音效")]
+    [SerializeField] private AudioClip jumpClip;
+
+    private AudioSource audioSource;
+
     public Basket basketScript;  // 取得 Basket.cs
 
     // 狀態變數
     private Rigidbody rb;
-    private bool isGrounded = false;
+    public bool isGrounded { get; private set; }
     private bool isJumpHeld = false;
     private bool canJump = false;
     private bool isBigJump = false;
@@ -32,6 +37,8 @@ public class PlayerJumpFloat : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         //rb.useGravity = true;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -94,6 +101,8 @@ public class PlayerJumpFloat : MonoBehaviour
         rb.velocity = vel;
 
         isBigJump = false;
+
+        PlayJumpSound();
     }
 
     // 執行大跳（需有籃子且長按）
@@ -104,6 +113,8 @@ public class PlayerJumpFloat : MonoBehaviour
         rb.velocity = vel;
 
         isBigJump = true;
+
+        PlayJumpSound();
     }
 
     // 判斷跳躍種類（是否為大跳）
@@ -148,6 +159,8 @@ public class PlayerJumpFloat : MonoBehaviour
         Vector3 vel = rb.velocity;
         vel.y = floatBoostForce;
         rb.velocity = vel;
+
+        PlayJumpSound();
     }
 
     // 落地時重設跳躍相關狀態
@@ -175,6 +188,12 @@ public class PlayerJumpFloat : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
+    }
+
+    private void PlayJumpSound()
+    {
+        if (jumpClip == null) return;
+        AudioSource.PlayClipAtPoint(jumpClip, transform.position, 1f);
     }
 
     // 給動畫控制器讀取狀態

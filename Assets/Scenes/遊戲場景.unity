@@ -2536,6 +2536,7 @@ GameObject:
   - component: {fileID: 880599835}
   - component: {fileID: 880599830}
   - component: {fileID: 880599827}
+  - component: {fileID: 880599842}
   m_Layer: 0
   m_Name: "Fungus_\u7269\u4EF6\u4E8B\u4EF6\u89F8\u767C"
   m_TagString: Untagged
@@ -2729,6 +2730,7 @@ MonoBehaviour:
   eventHandler: {fileID: 880599822}
   commandList:
   - {fileID: 880599819}
+  - {fileID: 880599842}
   - {fileID: 880599826}
   - {fileID: 880599820}
   - {fileID: 880599841}
@@ -3154,6 +3156,34 @@ MonoBehaviour:
   images:
   - {fileID: 2064771182}
   sprite: {fileID: 21300000, guid: e42872c1032840d41990d3b50e8115b4, type: 3}
+--- !u!114 &880599842
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880599817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 22
+  indentLevel: 0
+  description: 
+  targetObject: {fileID: 1984574752}
+  targetComponentAssemblyName: UnityEngine.AudioSource, UnityEngine.AudioModule,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: AudioSource
+  targetMethod: Stop
+  targetMethodText: 'Stop (): Void'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
 --- !u!1 &892650537
 GameObject:
   m_ObjectHideFlags: 0
@@ -4094,7 +4124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 880599824}
+  selectedFlowchart: {fileID: 1891834759}
 --- !u!4 &1197306215
 Transform:
   m_ObjectHideFlags: 1
@@ -5641,7 +5671,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b436519dd32e0a740a37ed8d174867ac, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.08
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6035,7 +6065,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 1891834761}
   selectedCommands: []
   variables: []
   description: 
@@ -6945,7 +6976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 31
   indentLevel: 0
-  storyText: "\u300C\u9019...\uFF1F\u300D"
+  storyText: "\u300C\u9019......\uFF1F\u300D"
   description: 
   character: {fileID: 778354024}
   portrait: {fileID: 0}
@@ -7452,6 +7483,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  jumpClip: {fileID: 8300000, guid: 756dc1ea4f48d694a8b95c694f24ed19, type: 3}
   basketScript: {fileID: 524928733}
 --- !u!114 &1984574756
 MonoBehaviour:
@@ -7641,7 +7673,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fbf2f9212a367e745b6d4e33273082db, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d07da88b624d92349a8431384b33863d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

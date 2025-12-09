@@ -63,8 +63,8 @@ public class PlayerControl : MonoBehaviour
         var movement = direction * moveSpeed * Time.deltaTime;
         transform.position += movement;
 
-        // 播放或停止走路音效
-        if (direction.magnitude > 0.1f)
+        // 播放或停止走路音效【原版，連空中都有聲音：if (direction.magnitude > 0.1f)】
+        if (jumpFloat != null && jumpFloat.isGrounded && direction.magnitude > 0.1f)
         {
             if (footstepAudio != null && !footstepAudio.isPlaying)
                 footstepAudio.Play();
