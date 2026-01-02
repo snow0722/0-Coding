@@ -7,7 +7,9 @@ public class GameData : MonoBehaviour
     public bool conch;
     public bool candy;
     public bool basket;
-    public bool crystal;
+    public bool crystala;
+    public bool crystalb;
+    public bool crystalc;
     public bool key;
     public bool apple;
     public bool milk;
@@ -30,7 +32,9 @@ public class GameData : MonoBehaviour
     public void GetConch() { conch = true; Debug.Log("玩家獲得 Conch！"); }
     public void GetCandy() { candy = true; Debug.Log("玩家獲得 Candy！"); }
     public void GetBasket() { basket = true; Debug.Log("玩家獲得 Basket！"); }
-    public void GetCrystal() { crystal = true; Debug.Log("玩家獲得 Crystal！"); }
+    public void GetCrystalA() { crystala = true; Debug.Log("玩家獲得 CrystalA！"); }
+    public void GetCrystalB() { crystalb = true; Debug.Log("玩家獲得 CrystalB！"); }
+    public void GetCrystalC() { crystalc = true; Debug.Log("玩家獲得 CrystalC！"); }
     public void GetKey() { key = true; Debug.Log("玩家獲得 Key！"); }
     public void GetApple() { apple = true; Debug.Log("玩家獲得 Apple！"); }
     public void GetMilk() { milk = true; Debug.Log("玩家獲得 Milk！"); }

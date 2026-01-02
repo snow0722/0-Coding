@@ -32,6 +32,7 @@ public class Apple : MonoBehaviour, IInteraction
     {
         print($"<color=#37f>撿取：{name}</color>");
         // 設為已經撿取，剛體設定為運動學(不會動)，關閉碰撞，設定座標
+        GameData.Instance.GetApple();
         rig.isKinematic = true;
         col.enabled = true;
         transform.position = new Vector3(0, 0, -200);

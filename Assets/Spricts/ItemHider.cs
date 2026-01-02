@@ -60,7 +60,9 @@ public class ItemHider : MonoBehaviour
             case "milk": return GameData.Instance.milk;
             case "candy": return GameData.Instance.candy;
             case "basket": return GameData.Instance.basket;
-            case "crystal": return GameData.Instance.crystal;
+            case "crystala": return GameData.Instance.crystala;
+            case "crystalb": return GameData.Instance.crystalb;
+            case "crystalc": return GameData.Instance.crystalc;
             case "key": return GameData.Instance.key;
             case "apple": return GameData.Instance.apple;
             case "bread": return GameData.Instance.bread;
