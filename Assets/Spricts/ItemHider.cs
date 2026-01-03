@@ -55,6 +55,9 @@ public class ItemHider : MonoBehaviour
 
     private bool HasItem(string itemName)
     {
+        if (GameData.Instance == null)
+            return false;
+
         switch (itemName)
         {
             case "milk": return GameData.Instance.milk;

@@ -48,24 +48,29 @@ public class Crystal : MonoBehaviour, IInteraction
         if (!isCollected)
         {
             isCollected = true;
-            Debug.Log($"<color=#37f>撿取：{crystalName}</color>");
 
-            // 剛體設為運動學
+            // 🔹 先更新 GameData
+            if (GameData.Instance != null)
+            {
+                if (crystalName == "A") GameData.Instance.GetCrystalA();
+                else if (crystalName == "B") GameData.Instance.GetCrystalB();
+                else if (crystalName == "C") GameData.Instance.GetCrystalC();
+            }
+
+            // 🔹 隱藏水晶
             if (rig != null) rig.isKinematic = true;
-
-            // 碰撞器可以選擇關閉
             if (col != null) col.enabled = false;
-
-            // 隱藏水晶 (移到遠方)
             transform.position = new Vector3(0, 0, -200);
 
-            // 播放音效
+            // 🔹 播放音效
             if (aud != null && soundPickUp != null)
                 aud.PlayOneShot(soundPickUp);
 
-            // 觸發 Fungus 對話
-            if (flowchartObject != null)
-                flowchartObject.SendFungusMessage(crystalName);
+            // 🔹 通知 UI / Fungus
+            if (CrystalUIManager.Instance != null)
+                CrystalUIManager.Instance.AddCrystal();
+
+            Debug.Log($"[Crystal] 撿取：{crystalName}");
         }
     }
 }
