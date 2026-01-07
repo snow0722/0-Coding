@@ -16,14 +16,11 @@ public class CrystalUIManager : MonoBehaviour
     [Header("水晶數量 UI")]
     [SerializeField] private Text crystalCountText;
 
-    [Header("總水晶數量")]
-    [SerializeField] private int totalCrystal = 3;
+    [Header("開頭動畫的 Fungus Flowchart")]
+    [SerializeField] private Flowchart firstflowchart;
 
-    [Header("共用的 Fungus Flowchart")]
+    [Header("物件共用的 Fungus Flowchart")]
     [SerializeField] private Flowchart flowchart;
-
-    // 目前已蒐集的水晶數量
-    private int currentCrystal = 0;
 
     private void Awake()
     {
@@ -40,12 +37,22 @@ public class CrystalUIManager : MonoBehaviour
         UpdateUI();
     }
 
+    private void Start()
+    {
+        CheckBasketStateAndNotifyFungus();
+    }
+
     /// <summary>
     /// 撿到一顆水晶時呼叫
     /// </summary>
     public void AddCrystal()
     {
-        currentCrystal++;
+        // 🔹 先累計 GameData
+        if (GameData.Instance != null)
+            GameData.Instance.AddCrystal();
+
+        // 🔹 從 GameData 讀目前水晶數量
+        int currentCrystal = GameData.Instance != null ? GameData.Instance.crystalCount : 0;
 
         // 同步數量給 Fungus
         if (flowchart != null)
@@ -64,6 +71,8 @@ public class CrystalUIManager : MonoBehaviour
     /// </summary>
     private void UpdateUI()
     {
+        int currentCrystal = GameData.Instance != null ? GameData.Instance.crystalCount : 0;
+
         if (crystalCountText != null)
             crystalCountText.text = $"水晶 x{currentCrystal}";
     }
@@ -73,6 +82,19 @@ public class CrystalUIManager : MonoBehaviour
     /// </summary>
     public int GetCurrentCrystalCount()
     {
-        return currentCrystal;
+        return GameData.Instance != null ? GameData.Instance.crystalCount : 0;
+    }
+
+
+    public void CheckBasketStateAndNotifyFungus()
+    {
+        if (GameData.Instance == null || firstflowchart == null)
+            return;
+
+        if (GameData.Instance.basket == false)
+        {
+            firstflowchart.SendFungusMessage("BasketIsClosed");
+            Debug.Log("[CrystalUIManager] Basket 關 → 發送 Fungus 訊息");
+        }
     }
 }

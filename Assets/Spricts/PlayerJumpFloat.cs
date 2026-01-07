@@ -39,6 +39,8 @@ public class PlayerJumpFloat : MonoBehaviour
         //rb.useGravity = true;
 
         audioSource = GetComponent<AudioSource>();
+
+        ResetJumpState();
     }
 
     void Update()
@@ -133,7 +135,7 @@ public class PlayerJumpFloat : MonoBehaviour
     // 漂浮邏輯：長按並在空中且大跳後才進入低重力
     private void HandleFloatGravity()
     {
-        if (basketScript != null && basketScript.basket && isBigJump && !isGrounded && isJumpHeld)
+        if (basketScript != null && isBigJump && !isGrounded && isJumpHeld)
         {
             // 法1:使用較小的重力達成漂浮效果
             //rb.AddForce(Vector3.down * (normalGravity * floatGravity), ForceMode.Acceleration);
@@ -154,7 +156,7 @@ public class PlayerJumpFloat : MonoBehaviour
     // 空中上飄（點按跳躍鍵）
     private void TryAirFloatBoost()
     {
-        if (basketScript == null || !basketScript.basket || isGrounded || !isBigJump) return;
+        if (basketScript == null || isGrounded || !isBigJump) return;
 
         Vector3 vel = rb.velocity;
         vel.y = floatBoostForce;
@@ -194,6 +196,15 @@ public class PlayerJumpFloat : MonoBehaviour
     {
         if (jumpClip == null) return;
         AudioSource.PlayClipAtPoint(jumpClip, transform.position, 1f);
+    }
+
+    public void ResetJumpState()
+    {
+        isBigJump = false;
+        isJumpHeld = false;
+        canJump = false;
+        jumpHoldTime = 0f;
+        wasGrounded = false;
     }
 
     // 給動畫控制器讀取狀態

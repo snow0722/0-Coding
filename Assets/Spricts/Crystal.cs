@@ -52,9 +52,9 @@ public class Crystal : MonoBehaviour, IInteraction
             // 🔹 先更新 GameData
             if (GameData.Instance != null)
             {
-                if (crystalName == "A") GameData.Instance.GetCrystalA();
-                else if (crystalName == "B") GameData.Instance.GetCrystalB();
-                else if (crystalName == "C") GameData.Instance.GetCrystalC();
+                if (crystalName == "水晶A") GameData.Instance.GetCrystalA();
+                else if (crystalName == "水晶B") GameData.Instance.GetCrystalB();
+                else if (crystalName == "水晶C") GameData.Instance.GetCrystalC();
             }
 
             // 🔹 隱藏水晶
@@ -74,3 +74,4 @@ public class Crystal : MonoBehaviour, IInteraction
         }
     }
 }
+

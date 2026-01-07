@@ -42,4 +42,11 @@ public class SceneLoader : MonoBehaviour
         // 等一幀確保新場景初始化完成
         yield return null;
     }
+
+    public void Quit()
+    {
+        // 應用程式的離開遊戲
+        Debug.Log("[已離開遊戲]");
+        Application.Quit();
+    }
 }

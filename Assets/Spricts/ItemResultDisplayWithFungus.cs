@@ -1,56 +1,76 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using Fungus;
 
 public class ItemResultDisplayWithFungus : MonoBehaviour
 {
     [Header("UI 元件")]
-    public GameObject resultPanel;
-    public Image resultImage;
-    public Animator panelAnimator;  // Panel 上的 Animator
+    public CanvasGroup canvasGroup;       // 整個結算 Canvas，用於淡入淡出
+    public Image resultImage;             // 上半部圖片
 
-    [Header("對應照片")]
-    public List<Sprite> itemSprites;     // 依收集數量對應照片
+    [Header("水晶對應圖片")]
+    public List<Sprite> itemSprites;      // 水晶數量對應圖片
 
-    [Header("Fungus 對話")]
+    [Header("淡入動畫設定")]
+    public float fadeDuration = 1f;       // Canvas 淡入時間
+
+    [Header("Fungus Flowchart")]
     public Flowchart flowchart;           // Flowchart 物件
-    public List<string> blockNames;       // 對應收集數量的 Block 名稱
 
-    void Start()
+    private void Awake()
     {
-        ShowResult();
+        // 遊戲一開始隱藏結算畫面
+        HideResult();
     }
 
+    /// <summary>
+    /// 顯示結算畫面
+    /// </summary>
     public void ShowResult()
     {
-        resultPanel.SetActive(true);
-
-        // 找出場景裡所有水晶
-        Crystal[] crystals = FindObjectsOfType<Crystal>();
         int collectedCount = 0;
-        foreach (var c in crystals)
+        if (CrystalUIManager.Instance != null)
+            collectedCount = CrystalUIManager.Instance.GetCurrentCrystalCount();
+
+        collectedCount = Mathf.Clamp(collectedCount, 0, Mathf.Max(itemSprites.Count - 1, 0));
+
+        if (resultImage != null && itemSprites.Count > 0)
+            resultImage.sprite = itemSprites[collectedCount];
+
+        // 直接發送訊息給 Fungus，文字由 Flowchart 控制
+        if (flowchart != null)
+            flowchart.SendFungusMessage("ShowResultMessage");
+
+        if (canvasGroup != null)
         {
-            if (c.Collected) collectedCount++;
+            canvasGroup.alpha = 0f;
+            canvasGroup.gameObject.SetActive(true);
+            StartCoroutine(FadeCanvas(0f, 1f));
         }
+    }
 
-        // 避免超出陣列範圍
-        collectedCount = Mathf.Clamp(collectedCount, 0, itemSprites.Count - 1);
-
-        // 更新圖片
-        resultImage.sprite = itemSprites[collectedCount];
-
-        // 觸發動畫
-        if (panelAnimator != null)
+    private IEnumerator FadeCanvas(float start, float end)
+    {
+        float t = 0f;
+        while (t < fadeDuration)
         {
-            panelAnimator.SetTrigger("ShowResult");
+            t += Time.deltaTime;
+            if (canvasGroup != null)
+                canvasGroup.alpha = Mathf.Lerp(start, end, t / fadeDuration);
+            yield return null;
         }
+        if (canvasGroup != null)
+            canvasGroup.alpha = end;
+    }
 
-        // 觸發 Fungus 對話
-        if (flowchart != null && blockNames.Count > collectedCount)
-        {
-            string blockName = blockNames[collectedCount];
-            flowchart.ExecuteBlock(blockName);
-        }
+    /// <summary>
+    /// 隱藏結算畫面
+    /// </summary>
+    public void HideResult()
+    {
+        if (canvasGroup != null)
+            canvasGroup.gameObject.SetActive(false);
     }
 }
