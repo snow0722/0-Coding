@@ -16,6 +16,8 @@ public class GameData : MonoBehaviour
     public bool apple;
     public bool milk;
     public bool bread;
+    public bool fairyShown = false;
+    public bool keyShown = false;
     // 可以繼續新增其他物品布林
 
     private void Awake()

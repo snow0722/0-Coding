@@ -22,6 +22,9 @@ public class CrystalUIManager : MonoBehaviour
     [Header("物件共用的 Fungus Flowchart")]
     [SerializeField] private Flowchart flowchart;
 
+    [Header("Fungus 鑰匙變數名稱")]
+    public string keyVariableName = "KeyCollected"; 
+
     private void Awake()
     {
         // Singleton
@@ -40,6 +43,7 @@ public class CrystalUIManager : MonoBehaviour
     private void Start()
     {
         CheckBasketStateAndNotifyFungus();
+        UpdateFungusKey();
     }
 
     /// <summary>
@@ -96,5 +100,26 @@ public class CrystalUIManager : MonoBehaviour
             firstflowchart.SendFungusMessage("BasketIsClosed");
             Debug.Log("[CrystalUIManager] Basket 關 → 發送 Fungus 訊息");
         }
+    }
+
+    /// <summary>
+    /// 玩家撿到鑰匙後呼叫
+    /// </summary>
+    public void PickUpKey()
+    {
+        // 同步到 Fungus
+        UpdateFungusKey();
+    }
+
+    /// <summary>
+    /// 同步 GameData.key 到 Fungus 布林變數
+    /// </summary>
+    public void UpdateFungusKey()
+    {
+        if (flowchart == null || GameData.Instance == null) return;
+
+        flowchart.SetBooleanVariable(keyVariableName, GameData.Instance.key);
+
+        Debug.Log($"[KeyUIManager] Fungus key 已同步: {GameData.Instance.key}");
     }
 }
