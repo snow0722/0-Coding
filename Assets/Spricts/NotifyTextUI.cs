@@ -31,6 +31,11 @@ public class NotifyTextUI : MonoBehaviour
         uiText.text = "尋找籃子";
     }
 
+    public void ShowE()
+    {
+        uiText.text = "神奇生物出現了！";
+    }
+
     public void Clear()
     {
         uiText.text = "";
