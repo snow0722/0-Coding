@@ -153,7 +153,7 @@ MonoBehaviour:
   fallDuration: 0.3
   recoverDelay: 2
   recoverDuration: 0.3
-  fallSound: {fileID: 0}
+  fallSound: {fileID: 8300000, guid: a6e218d7a58771546b7363e54eebdf54, type: 3}
   standSound: {fileID: 0}
   minDistance: 3
   maxDistance: 20
@@ -216,7 +216,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a6e218d7a58771546b7363e54eebdf54, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
