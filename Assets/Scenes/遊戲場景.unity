@@ -36043,6 +36043,7 @@ GameObject:
   - component: {fileID: 2115722495}
   - component: {fileID: 2115722494}
   - component: {fileID: 2115722493}
+  - component: {fileID: 2115722496}
   m_Layer: 0
   m_Name: "\u7A7A\u6C23\u7246"
   m_TagString: Untagged
@@ -36080,8 +36081,8 @@ Transform:
   m_GameObject: {fileID: 2115722490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.6, z: 0}
+  m_LocalScale: {x: 1, y: 4.1642656, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -36149,6 +36150,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 5.32, z: 11.26}
   m_Center: {x: 20.35, y: 1.75, z: -5.51}
+--- !u!65 &2115722496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115722490}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 37.3, y: 0.52, z: 22.26}
+  m_Center: {x: 7.3, y: 3.13, z: -5.18}
 --- !u!1 &2144643720
 GameObject:
   m_ObjectHideFlags: 0
